@@ -1,4 +1,4 @@
-package com.diegooliveira.rockpaperscissors
+package com.diegooliveira.rock_paper_scissors
 
 import org.junit.Test
 
