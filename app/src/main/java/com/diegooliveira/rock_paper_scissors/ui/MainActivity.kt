@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.diegooliveira.rock_paper_scissors.R
-import com.diegooliveira.rock_paper_scissors.data.remote.RetrofitInstance
+import com.diegooliveira.rock_paper_scissors.data.remote.api.RetrofitInstance
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -1,4 +1,4 @@
-package com.diegooliveira.rock_paper_scissors.domain.entity
+package com.diegooliveira.rock_paper_scissors.data.remote.api.entity
 
 data class RockPaperScissorsResponse(
     val cpu: String,
