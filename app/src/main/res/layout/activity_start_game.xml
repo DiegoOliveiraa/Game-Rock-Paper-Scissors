@@ -9,7 +9,7 @@
     tools:context=".ui.activities.StartGameActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/logoImageView"
+        android:id="@+id/iv_logo"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="16dp"
@@ -19,16 +19,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/nomeTextInputLayout"
+        android:id="@+id/til_player"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logoImageView">
+        app:layout_constraintTop_toBottomOf="@id/iv_logo">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nomeEditText"
+            android:id="@+id/tiet_player"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/activity_start_game_input_player" />
@@ -36,7 +36,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/iniciarJogadaButton"
+        android:id="@+id/bt_start_game"
         style="@style/CustomMaterialButtonPrimary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -45,10 +45,10 @@
         android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nomeTextInputLayout" />
+        app:layout_constraintTop_toBottomOf="@id/til_player" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/verRankingButton"
+        android:id="@+id/bt_ranking"
         style="@style/CustomMaterialButtonSecondary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -57,6 +57,6 @@
         android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iniciarJogadaButton" />
+        app:layout_constraintTop_toBottomOf="@id/bt_start_game" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
