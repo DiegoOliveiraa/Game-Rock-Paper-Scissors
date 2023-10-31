@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.diegooliveira.rock_paper_scissors.domain.entity.RockPaperScissorsResult
+import com.diegooliveira.rock_paper_scissors.data.source.remote.entity.RockPaperScissorsResult
 import com.diegooliveira.rock_paper_scissors.domain.repository.RockPaperScissorsRepository
 import kotlinx.coroutines.launch
 class RockPaperScissorsViewModel(private val repository: RockPaperScissorsRepository) : ViewModel() {
