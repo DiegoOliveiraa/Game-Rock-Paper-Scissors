@@ -9,8 +9,9 @@ import com.diegooliveira.rock_paper_scissors.domain.entity.RockPaperScissorsResu
 import com.diegooliveira.rock_paper_scissors.domain.repository.RockPaperScissorsRepository
 import kotlinx.coroutines.launch
 class RockPaperScissorsViewModel(private val repository: RockPaperScissorsRepository) : ViewModel() {
-    private val _gameResult = MutableLiveData<RockPaperScissorsResult>()
+
     val gameResult: LiveData<RockPaperScissorsResult> get() = _gameResult
+    private val _gameResult = MutableLiveData<RockPaperScissorsResult>()
 
     fun playGame(guess: String) {
         viewModelScope.launch {

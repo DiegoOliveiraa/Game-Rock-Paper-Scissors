@@ -11,8 +11,9 @@ import kotlinx.coroutines.launch
 class MedievalNameViewModel(
     private val repository: MedievalNameRepository
 ) : ViewModel() {
-    private val _medievalNames = MutableLiveData<List<String>>()
+
     val medievalNames: LiveData<List<String>> get() = _medievalNames
+    private val _medievalNames = MutableLiveData<List<String>>()
 
     fun fetchMedievalNames() {
         viewModelScope.launch {
