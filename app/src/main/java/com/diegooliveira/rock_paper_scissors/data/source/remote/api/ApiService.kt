@@ -1,7 +1,7 @@
-package com.diegooliveira.rock_paper_scissors.data.remote.api
+package com.diegooliveira.rock_paper_scissors.data.source.remote.api
 
-import com.diegooliveira.rock_paper_scissors.data.remote.api.entity.MedievalNameResponse
-import com.diegooliveira.rock_paper_scissors.data.remote.api.entity.RockPaperScissorsResponse
+import com.diegooliveira.rock_paper_scissors.data.source.remote.entity.MedievalNameResponse
+import com.diegooliveira.rock_paper_scissors.data.source.remote.entity.RockPaperScissorsResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
