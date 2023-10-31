@@ -19,10 +19,13 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 Log.i("Step 1 -", "Criação response")
-                val response = RetrofitInstance.apiService.getMedievalName()
-                Log.i("Step 2 -", response.results.toString())
+                val responseName = RetrofitInstance.apiService.getMedievalName()
+                Log.i("Step 2 -", responseName.results.toString())
+
+                val responseRPS = RetrofitInstance.apiService.playGame("rock")
+                Log.i("Step 3 -", responseRPS.toString())
             } catch (e: Exception) {
-                Log.i("Step 3 -", "erro api")
+                Log.i("Step 4 -", "erro api")
                 // Lidar com erros de rede ou outras exceções
             }
         }
