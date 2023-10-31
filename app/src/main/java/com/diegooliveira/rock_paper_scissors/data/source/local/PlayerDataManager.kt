@@ -11,8 +11,10 @@ class PlayerDataManager(context: Context) {
 
     fun savePlayerData(playerData: PlayerData) {
         val playerList: MutableList<PlayerData> = getPlayerList()
-        playerList.add(playerData)
-        savePlayerList(playerList)
+        if (!playerList.any { it.playerName == playerData.playerName }) {
+            playerList.add(playerData)
+            savePlayerList(playerList)
+        }
     }
 
     fun getPlayerList(): MutableList<PlayerData> {

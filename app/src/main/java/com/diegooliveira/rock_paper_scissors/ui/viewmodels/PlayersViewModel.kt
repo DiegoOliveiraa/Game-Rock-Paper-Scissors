@@ -7,16 +7,19 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.diegooliveira.rock_paper_scissors.data.source.local.PlayerData
 import com.diegooliveira.rock_paper_scissors.data.source.local.PlayerDataManager
-import com.diegooliveira.rock_paper_scissors.domain.repository.MedievalNameRepository
+import com.diegooliveira.rock_paper_scissors.domain.repository.PlayersRepository
 import kotlinx.coroutines.launch
 
-class MedievalNameViewModel(
-    private val repository: MedievalNameRepository,
+class PlayersViewModel(
+    private val repository: PlayersRepository,
     private val playerDataManager: PlayerDataManager
 ) : ViewModel() {
 
     val medievalNames: LiveData<List<String>> get() = _medievalNames
     private val _medievalNames = MutableLiveData<List<String>>()
+
+    val playerUpdated: LiveData<Boolean> get() = _playerUpdated
+    private val _playerUpdated = MutableLiveData<Boolean>()
 
     fun fetchMedievalNames() {
         viewModelScope.launch {
@@ -30,14 +33,13 @@ class MedievalNameViewModel(
     }
 
     fun savePlayer(player: String) {
-        playerDataManager.savePlayerData(PlayerData(player))
+        if (player.isNotEmpty()) {
+            playerDataManager.savePlayerData(PlayerData(player))
+            _playerUpdated.value = true
+        } else  _playerUpdated.value = false
     }
 
     fun getPlayerList(): MutableList<PlayerData> {
         return playerDataManager.getPlayerList()
-    }
-
-    fun updatePlayerPoints(playerName: String, newPoints: Int = 0): Boolean {
-        return playerDataManager.updatePlayerPoints(playerName, newPoints)
     }
 }

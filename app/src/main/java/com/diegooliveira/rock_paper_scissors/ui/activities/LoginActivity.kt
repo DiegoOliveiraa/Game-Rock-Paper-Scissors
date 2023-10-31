@@ -6,16 +6,14 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.diegooliveira.rock_paper_scissors.R
-import com.diegooliveira.rock_paper_scissors.ui.viewmodels.MedievalNameViewModel
-import com.diegooliveira.rock_paper_scissors.ui.viewmodels.RockPaperScissorsViewModel
+import com.diegooliveira.rock_paper_scissors.ui.viewmodels.PlayersViewModel
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {
 
-    private val medievalNameViewModel: MedievalNameViewModel by viewModel()
-    private val rockPaperScissorsViewModel: RockPaperScissorsViewModel by viewModel()
+    private val viewModel: PlayersViewModel by viewModel()
 
     private lateinit var buttonStartGame: MaterialButton
     private lateinit var inputTextPlayer: TextInputEditText
@@ -30,41 +28,23 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         intFindViewByIds()
         setOnClickListeners()
+        initObservers()
+    }
 
-        // Observar as mudanças nos dados e reagir conforme necessário
-        medievalNameViewModel.medievalNames.observe(this, Observer { medievalNames ->
-            // Atualizar a UI com os nomes medievais
-            Log.i("Step 1 - Medieval Names", medievalNames.toString())
+    private fun initObservers() {
+        viewModel.playerUpdated.observe(this, Observer {
+            Log.e("Lista de Players", viewModel.getPlayerList().toString())
+            Toast.makeText(
+                this,
+                "Jogador criado com sucesso!",
+                Toast.LENGTH_SHORT
+            ).show()
         })
-
-        rockPaperScissorsViewModel.gameResult.observe(this, Observer { gameResult ->
-            // Atualizar a UI com o resultado do jogo Rock-Paper-Scissors
-            Log.i("Step 2 - Game Result", gameResult.toString())
-        })
-
-        // Iniciar a Coroutine para buscar dados da API
-        medievalNameViewModel.fetchMedievalNames()
-        rockPaperScissorsViewModel.playGame("rock")
     }
 
     private fun setOnClickListeners() {
         buttonStartGame.setOnClickListener {
-            val playerUpdated = medievalNameViewModel.updatePlayerPoints(
-                playerName = inputTextPlayer.text.toString()
-            )
-
-            if (playerUpdated) {
-                // Jogador encontrado e pontos atualizados com sucesso
-                Toast.makeText(
-                    this,
-                    "Pontos do jogador atualizados com sucesso!",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                // Jogador não encontrado na lista
-                Toast.makeText(this, "Jogador não encontrado na lista!", Toast.LENGTH_SHORT).show()
-                medievalNameViewModel.savePlayer(inputTextPlayer.text.toString())
-            }
+            viewModel.savePlayer(inputTextPlayer.text.toString())
         }
     }
 
