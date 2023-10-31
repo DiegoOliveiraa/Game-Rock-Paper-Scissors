@@ -17,10 +17,12 @@ class LoginActivity : AppCompatActivity() {
     private val viewModel: PlayersViewModel by viewModel()
 
     private lateinit var buttonStartGame: MaterialButton
+    private lateinit var buttonRanking: MaterialButton
     private lateinit var inputTextPlayer: TextInputEditText
 
     private fun intFindViewByIds() {
         buttonStartGame = findViewById(R.id.bt_start_game)
+        buttonRanking = findViewById(R.id.bt_ranking)
         inputTextPlayer = findViewById(R.id.tiet_player)
     }
 
@@ -28,40 +30,31 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         intFindViewByIds()
-        setOnClickListeners()
         initObservers()
+        setOnClickListeners()
     }
 
     private fun initObservers() {
-        viewModel.playerUpdated.observe(this, Observer {
-            Log.e("Lista de Players", viewModel.getPlayerList().toString())
-            Toast.makeText(
-                this,
-                "Jogador criado com sucesso!",
-                Toast.LENGTH_SHORT
-            ).show()
-        })
+        viewModel.opponentName.observe(this) { opponent ->
+            viewModel.savePlayer(opponent)
+            startActivity(
+                Intent(this, StartGameActivity::class.java).apply {
+                    putExtra("PLAYER_NAME", inputTextPlayer.text.toString())
+                    putExtra("OPPONENT_NAME", opponent)
+                }
+            )
+        }
     }
 
     private fun setOnClickListeners() {
         buttonStartGame.setOnClickListener {
             viewModel.savePlayer(inputTextPlayer.text.toString())
-            if (isInternetAvailable()) {
-                startActivity(
-                    Intent(this, StartGameActivity::class.java).apply {
-                        putExtra("PLAYER_NAME", inputTextPlayer.text.toString())
-                    }
-                )
-            } else {
-                Toast.makeText(
-                    this,
-                    "Sem conexão com a internet",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+            viewModel.fetchOpponentName()
+        }
+
+        buttonRanking.setOnClickListener {
+            startActivity(Intent(this, RankingActivity::class.java))
         }
     }
-
-    private fun isInternetAvailable() = true
 
 }

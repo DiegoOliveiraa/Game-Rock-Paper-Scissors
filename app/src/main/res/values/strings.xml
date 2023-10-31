@@ -7,8 +7,10 @@
 
     <string name="activity_start_game_name_player">Olá, %s</string>
     <string name="activity_start_game_name_opponent">Seu oponente, %s escolheu:</string>
+    <string name="activity_start_game_options">Escolha uma das opções abaixo:</string>
 
     <string name="activity_ranking_opponent_name">Ranking dos jogadores:</string>
     <string name="activity_ranking_points">Pontos</string>
     <string name="activity_back_ranking">Voltar</string>
+
 </resources>

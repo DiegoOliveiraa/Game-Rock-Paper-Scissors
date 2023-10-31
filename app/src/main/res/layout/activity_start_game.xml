@@ -58,18 +58,19 @@
         app:layout_constraintEnd_toEndOf="@+id/image_hand_scissors"
         app:layout_constraintStart_toStartOf="@+id/image_hand_rock"
         app:layout_constraintTop_toBottomOf="@+id/image_versus"
-        tools:text="Escolha uma das opções abaixo:" />
+        android:text="@string/activity_start_game_options" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_hand_rock"
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:clickable="true"
+        android:focusable="true"
+        android:tag="rock"
         app:layout_constraintBottom_toBottomOf="@+id/image_hand_paper"
         app:layout_constraintEnd_toStartOf="@+id/image_hand_paper"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/image_hand_paper"
-        android:focusable="true"
         app:srcCompat="@drawable/ic_rock" />
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -79,6 +80,7 @@
         android:layout_marginTop="32dp"
         android:clickable="true"
         android:focusable="true"
+        android:tag="paper"
         app:layout_constraintEnd_toStartOf="@+id/image_hand_scissors"
         app:layout_constraintStart_toEndOf="@+id/image_hand_rock"
         app:layout_constraintTop_toBottomOf="@+id/text_user_choice"
@@ -89,11 +91,12 @@
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:clickable="true"
+        android:focusable="true"
+        android:tag="scissors"
         app:layout_constraintBottom_toBottomOf="@+id/image_hand_paper"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_hand_paper"
         app:layout_constraintTop_toTopOf="@+id/image_hand_paper"
-        android:focusable="true"
         app:srcCompat="@drawable/ic_scissors" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
