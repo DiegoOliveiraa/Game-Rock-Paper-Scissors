@@ -3,4 +3,6 @@
     <string name="activity_start_game_input_player">Nome do Jogador</string>
     <string name="activity_start_game_button_star">Iniciar Jogada</string>
     <string name="activity_start_game_button_ranking">Ver Ranking</string>
+    <string name="opponent_name">Ranking dos jogadores:</string>
+    <string name="pontos">Pontos</string>
 </resources>
