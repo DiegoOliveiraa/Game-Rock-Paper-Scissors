@@ -29,7 +29,7 @@ class RankingActivity : AppCompatActivity() {
     }
 
     private fun createdRecyclerView() {
-        val dataSet = viewModel.getPlayerList() ?: emptyList()
+        val dataSet = viewModel.getPlayerList()
 
         // Configurar o RecyclerView com o Adapter
         val adapter = RankingAdapter(this, dataSet)
