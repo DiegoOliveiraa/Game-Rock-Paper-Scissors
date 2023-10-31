@@ -1,4 +1,4 @@
-package com.diegooliveira.rock_paper_scissors.ui
+package com.diegooliveira.rock_paper_scissors.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,14 +9,14 @@ import com.diegooliveira.rock_paper_scissors.ui.viewmodels.MedievalNameViewModel
 import com.diegooliveira.rock_paper_scissors.ui.viewmodels.RockPaperScissorsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity() {
+class StartGameActivity : AppCompatActivity() {
 
     private val medievalNameViewModel: MedievalNameViewModel by viewModel()
     private val rockPaperScissorsViewModel: RockPaperScissorsViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_start_game)
 
         // Observar as mudanças nos dados e reagir conforme necessário
         medievalNameViewModel.medievalNames.observe(this, Observer { medievalNames ->
