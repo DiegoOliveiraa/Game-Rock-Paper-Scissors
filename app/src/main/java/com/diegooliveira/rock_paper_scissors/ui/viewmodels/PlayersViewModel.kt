@@ -15,9 +15,6 @@ class PlayersViewModel(
     private val playerDataManager: PlayerDataManager
 ) : ViewModel() {
 
-    val playerName: LiveData<String> get() = _playerName
-    private val _playerName = MutableLiveData<String>()
-
     val opponentName: LiveData<String> get() = _opponentName
     private val _opponentName = MutableLiveData<String>()
 
@@ -28,7 +25,7 @@ class PlayersViewModel(
         viewModelScope.launch {
             try {
                 val response = repository.getMedievalName()
-                _playerName.value = response.results.first()
+                _opponentName.value = response.results.first()
             } catch (e: Exception) {
                 Log.i("ERRO API", e.toString())
             }

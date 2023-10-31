@@ -5,6 +5,9 @@
     <string name="activity_login_button_star">Iniciar Jogada</string>
     <string name="activity_login_button_ranking">Ver Ranking</string>
 
+    <string name="activity_start_game_name_player">Olá, %s</string>
+    <string name="activity_start_game_name_opponent">Seu oponente, %s escolheu:</string>
+
     <string name="activity_ranking_opponent_name">Ranking dos jogadores:</string>
     <string name="activity_ranking_points">Pontos</string>
 </resources>
