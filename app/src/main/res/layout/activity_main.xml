@@ -5,95 +5,95 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/text_apresetantion_with_name"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_name_player"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Olá Diego" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_description_opponent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/image_opponents_choice"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/image_opponents_choice"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="@+id/image_opponents_choice"
-        app:layout_constraintTop_toBottomOf="@+id/text_apresetantion_with_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name_player"
         tools:text="Seu oponente, Fulano de tal escolheu:" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_opponents_choice"
-        android:layout_width="132dp"
-        android:layout_height="132dp"
+        android:layout_width="120dp"
+        android:layout_height="130dp"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_description_opponent"
-        app:srcCompat="@drawable/interrogacao" />
+        app:srcCompat="@drawable/ic_none" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_versus"
-        android:layout_width="62dp"
-        android:layout_height="51dp"
-        app:layout_constraintBottom_toTopOf="@+id/text_user_choice"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="@+id/image_opponents_choice"
-        app:layout_constraintHorizontal_bias="0.471"
         app:layout_constraintStart_toStartOf="@+id/image_opponents_choice"
         app:layout_constraintTop_toBottomOf="@+id/image_opponents_choice"
-        app:srcCompat="@drawable/vs" />
+        app:srcCompat="@drawable/ic_vc" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_user_choice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/image_hand_paper"
         app:layout_constraintEnd_toEndOf="@+id/image_hand_scissors"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="@+id/image_hand_rock"
         app:layout_constraintTop_toBottomOf="@+id/image_versus"
         tools:text="Escolha uma das opções abaixo:" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_hand_rock"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:clickable="true"
         app:layout_constraintBottom_toBottomOf="@+id/image_hand_paper"
         app:layout_constraintEnd_toStartOf="@+id/image_hand_paper"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/image_hand_paper"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/pedra" />
+        android:focusable="true"
+        app:srcCompat="@drawable/ic_rock" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_hand_paper"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="200dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="32dp"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_constraintEnd_toStartOf="@+id/image_hand_scissors"
         app:layout_constraintStart_toEndOf="@+id/image_hand_rock"
-        app:srcCompat="@drawable/papel" />
+        app:layout_constraintTop_toBottomOf="@+id/text_user_choice"
+        app:srcCompat="@drawable/ic_paper" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_hand_scissors"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:clickable="true"
         app:layout_constraintBottom_toBottomOf="@+id/image_hand_paper"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/image_hand_paper"
         app:layout_constraintTop_toTopOf="@+id/image_hand_paper"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/tesoura" />
+        android:focusable="true"
+        app:srcCompat="@drawable/ic_scissors" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

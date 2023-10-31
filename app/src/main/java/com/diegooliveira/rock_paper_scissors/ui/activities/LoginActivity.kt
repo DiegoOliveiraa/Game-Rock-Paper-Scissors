@@ -12,7 +12,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class StartGameActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     private val medievalNameViewModel: MedievalNameViewModel by viewModel()
     private val rockPaperScissorsViewModel: RockPaperScissorsViewModel by viewModel()
@@ -27,7 +27,7 @@ class StartGameActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_start_game)
+        setContentView(R.layout.activity_login)
         intFindViewByIds()
         setOnClickListeners()
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_logo"
     android:padding="20dp"
-    tools:context=".ui.activities.StartGameActivity">
+    tools:context=".ui.activities.LoginActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_logo"
@@ -31,7 +31,7 @@
             android:id="@+id/tiet_player"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/activity_start_game_input_player" />
+            android:hint="@string/activity_login_input_player" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -41,7 +41,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="@string/activity_start_game_button_star"
+        android:text="@string/activity_login_button_star"
         android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +53,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/activity_start_game_button_ranking"
+        android:text="@string/activity_login_button_ranking"
         android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

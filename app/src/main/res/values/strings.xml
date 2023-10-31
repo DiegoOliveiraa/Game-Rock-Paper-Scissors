@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">RPS</string>
-    <string name="activity_start_game_input_player">Nome do Jogador</string>
-    <string name="activity_start_game_button_star">Iniciar Jogada</string>
-    <string name="activity_start_game_button_ranking">Ver Ranking</string>
+    <string name="activity_login_input_player">Nome do Jogador</string>
+    <string name="activity_login_button_star">Iniciar Jogada</string>
+    <string name="activity_login_button_ranking">Ver Ranking</string>
 </resources>
