@@ -1,5 +1,6 @@
 package com.diegooliveira.rock_paper_scissors.ui.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -45,7 +46,22 @@ class LoginActivity : AppCompatActivity() {
     private fun setOnClickListeners() {
         buttonStartGame.setOnClickListener {
             viewModel.savePlayer(inputTextPlayer.text.toString())
+            if (isInternetAvailable()) {
+                startActivity(
+                    Intent(this, StartGameActivity::class.java).apply {
+                        putExtra("PLAYER_NAME", inputTextPlayer.text.toString())
+                    }
+                )
+            } else {
+                Toast.makeText(
+                    this,
+                    "Sem conexão com a internet",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
+
+    private fun isInternetAvailable() = true
 
 }

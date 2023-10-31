@@ -15,17 +15,20 @@ class PlayersViewModel(
     private val playerDataManager: PlayerDataManager
 ) : ViewModel() {
 
-    val medievalNames: LiveData<List<String>> get() = _medievalNames
-    private val _medievalNames = MutableLiveData<List<String>>()
+    val playerName: LiveData<String> get() = _playerName
+    private val _playerName = MutableLiveData<String>()
+
+    val opponentName: LiveData<String> get() = _opponentName
+    private val _opponentName = MutableLiveData<String>()
 
     val playerUpdated: LiveData<Boolean> get() = _playerUpdated
     private val _playerUpdated = MutableLiveData<Boolean>()
 
-    fun fetchMedievalNames() {
+    fun fetchOpponentName() {
         viewModelScope.launch {
             try {
                 val response = repository.getMedievalName()
-                _medievalNames.value = response.results
+                _playerName.value = response.results.first()
             } catch (e: Exception) {
                 Log.i("ERRO API", e.toString())
             }
