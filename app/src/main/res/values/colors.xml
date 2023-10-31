@@ -2,7 +2,9 @@
 <resources>
     <color name="bg_logo">#F4F4F4</color>
     <color name="primary_color">#82D546</color>
+    <color name="secondary_color">#63519F</color>
     <color name="hands_color">#FDD7BB</color>
     <color name="black">#FF000000</color>
+    <color name="text_black">#333333</color>
     <color name="white">#FFFFFFFF</color>
 </resources>
