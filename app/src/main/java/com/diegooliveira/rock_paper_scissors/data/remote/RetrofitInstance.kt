@@ -1,10 +1,10 @@
-package com.diegooliveira.rock_paper_scissors
+package com.diegooliveira.rock_paper_scissors.data.remote
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
-    private const val BASE_URL = "https://dog.ceo/api/"
+    private const val BASE_URL = "https://api.toys/api/"
 
     private val retrofit by lazy {
         Retrofit.Builder()
@@ -13,7 +13,7 @@ object RetrofitInstance {
             .build()
     }
 
-    val apiService: DogApiService by lazy {
-        retrofit.create(DogApiService::class.java)
+    val apiService: ApiService by lazy {
+        retrofit.create(ApiService::class.java)
     }
 }

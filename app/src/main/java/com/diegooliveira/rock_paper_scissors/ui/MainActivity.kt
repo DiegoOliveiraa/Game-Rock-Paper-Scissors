@@ -1,8 +1,10 @@
-package com.diegooliveira.rock_paper_scissors
+package com.diegooliveira.rock_paper_scissors.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.diegooliveira.rock_paper_scissors.R
+import com.diegooliveira.rock_paper_scissors.data.remote.RetrofitInstance
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,19 +19,10 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 Log.i("Step 1 -", "Criação response")
-                val response = RetrofitInstance.apiService.getDogBreeds()
-                Log.i("Step 2 -", response.status)
-                if (response.status == "success") {
-                    val breedsMap = response.message
-                    Log.i("Step 3 -", response.message.toString())
-                    // Agora você pode usar a lista de raças de cachorro (breedsMap) como quiser
-                    // Por exemplo, exibir em um RecyclerView ou ListView
-                } else {
-                    Log.i("Step 4 -", "nada aqui")
-                    // Tratar erro, se necessário
-                }
+                val response = RetrofitInstance.apiService.getMedievalName()
+                Log.i("Step 2 -", response.results.toString())
             } catch (e: Exception) {
-                Log.i("Step 5 -", "erro api")
+                Log.i("Step 3 -", "erro api")
                 // Lidar com erros de rede ou outras exceções
             }
         }
