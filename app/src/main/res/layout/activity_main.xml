@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/text_apresetantion_with_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Olá Diego" />
+
+    <TextView
+        android:id="@+id/text_description_opponent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/image_opponents_choice"
+        app:layout_constraintEnd_toEndOf="@+id/image_opponents_choice"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/image_opponents_choice"
+        app:layout_constraintTop_toBottomOf="@+id/text_apresetantion_with_name"
+        tools:text="Seu oponente, Fulano de tal escolheu:" />
+
+    <ImageView
+        android:id="@+id/image_opponents_choice"
+        android:layout_width="132dp"
+        android:layout_height="132dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_description_opponent"
+        app:srcCompat="@drawable/interrogacao" />
+
+    <ImageView
+        android:id="@+id/image_versus"
+        android:layout_width="62dp"
+        android:layout_height="51dp"
+        app:layout_constraintBottom_toTopOf="@+id/text_user_choice"
+        app:layout_constraintEnd_toEndOf="@+id/image_opponents_choice"
+        app:layout_constraintHorizontal_bias="0.471"
+        app:layout_constraintStart_toStartOf="@+id/image_opponents_choice"
+        app:layout_constraintTop_toBottomOf="@+id/image_opponents_choice"
+        app:srcCompat="@drawable/vs" />
+
+    <TextView
+        android:id="@+id/text_user_choice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/image_hand_paper"
+        app:layout_constraintEnd_toEndOf="@+id/image_hand_scissors"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="@+id/image_hand_rock"
+        app:layout_constraintTop_toBottomOf="@+id/image_versus"
+        tools:text="Escolha uma das opções abaixo:" />
+
+    <ImageView
+        android:id="@+id/image_hand_rock"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/image_hand_paper"
+        app:layout_constraintEnd_toStartOf="@+id/image_hand_paper"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/image_hand_paper"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/pedra" />
+
+    <ImageView
+        android:id="@+id/image_hand_paper"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/image_hand_scissors"
+        app:layout_constraintStart_toEndOf="@+id/image_hand_rock"
+        app:srcCompat="@drawable/papel" />
+
+    <ImageView
+        android:id="@+id/image_hand_scissors"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/image_hand_paper"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/image_hand_paper"
+        app:layout_constraintTop_toTopOf="@+id/image_hand_paper"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/tesoura" />
+</androidx.constraintlayout.widget.ConstraintLayout>
