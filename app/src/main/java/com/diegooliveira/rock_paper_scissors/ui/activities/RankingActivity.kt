@@ -26,6 +26,9 @@ class RankingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_ranking_player)
         intFindViewByIds()
         createdRecyclerView()
+        buttonStartGame.setOnClickListener {
+            finish()
+        }
     }
 
     private fun createdRecyclerView() {
