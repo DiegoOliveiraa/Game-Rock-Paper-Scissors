@@ -67,11 +67,14 @@ class StartGameActivity : AppCompatActivity() {
         viewModel.finalRoundsPlayed.observe(this) {
             if (it == VICTORY) viewModel.savePlayerPoints(extraNamePlayer.orEmpty())
             if (it == DEFEAT) viewModel.savePlayerPoints(extraNameOpponent.orEmpty())
-            Toast.makeText(
-                this,
-                getString(R.string.activity_start_game_message_final_rounds),
-                Toast.LENGTH_LONG
-            )
+
+            imageOpponentsChoice.setImageResource(R.drawable.ic_none)
+            imageHandRock.setImageResource(R.drawable.ic_rock_selected)
+            imageHandPaper.setImageResource(R.drawable.ic_paper_selected)
+            imageHandScissors.setImageResource(R.drawable.ic_scissors_selected)
+
+            ivBgMessage.visibility = View.GONE
+            textMessage.visibility = View.GONE
         }
 
         viewModel.pointsPlayer.observe(this) { points ->

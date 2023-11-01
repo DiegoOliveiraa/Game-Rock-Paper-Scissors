@@ -39,7 +39,7 @@ class RockPaperScissorsViewModel(
             try {
                 val response = repository.playGame(guess)
                 _gameResult.value = response
-                updatePlayerPoints(player, opponent, response.winner)
+                updatePlayerPoints(response.winner)
             } catch (e: Exception) {
                 _gameResult.value = null
             }
