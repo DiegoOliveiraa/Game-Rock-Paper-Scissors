@@ -9,6 +9,8 @@
 - 📊 **Estatísticas do Jogador:** Salve os dados do jogador localmente para rastrear o progresso e as estatísticas.
 - 🛠️ **Arquitetura MVVM:** Utiliza a arquitetura Model-View-ViewModel para uma estrutura de código organizada e escalável.
 
+  ![Game Rock Paper Scissors](https://github.com/DiegoOliveiraa/Game-Rock-Paper-Scissors/blob/main/Image_app.jpeg?raw=true)
+
 ## Tecnologias Utilizadas
 
 - **Kotlin:** Linguagem de programação moderna e concisa para o desenvolvimento Android.
