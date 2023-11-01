@@ -13,15 +13,15 @@ class RankingActivity : AppCompatActivity() {
 
     private val viewModel: PlayersViewModel by viewModel()
 
-    private lateinit var buttonStartGame: MaterialButton
-    private lateinit var recyclerView: RecyclerView
+    lateinit var buttonStartGame: MaterialButton
+    lateinit var recyclerView: RecyclerView
 
     private fun intFindViewByIds() {
         buttonStartGame = findViewById(R.id.bt_ranking)
         recyclerView = findViewById(R.id.activity_lista_produtos_recyclerView)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ranking_player)
         intFindViewByIds()

@@ -14,7 +14,6 @@ class PlayersViewModel(
     private val repository: PlayersRepository,
     private val playerDataManager: PlayerDataManager
 ) : ViewModel() {
-
     val opponentName: LiveData<String> get() = _opponentName
     private val _opponentName = MutableLiveData<String>()
 
@@ -36,10 +35,10 @@ class PlayersViewModel(
         if (player.isNotEmpty()) {
             playerDataManager.savePlayerData(PlayerData(player))
             _playerUpdated.value = true
-        } else  _playerUpdated.value = false
+        } else _playerUpdated.value = false
     }
 
-    fun getPlayerList(): MutableList<PlayerData> {
-        return playerDataManager.getPlayerList()
+    fun getPlayerList(): List<PlayerData> {
+        return playerDataManager.getPlayerList().toList()
     }
 }
