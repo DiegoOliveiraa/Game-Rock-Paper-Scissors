@@ -11,6 +11,7 @@ android {
     defaultConfig {
         applicationId "com.diegooliveira.rock_paper_scissors"
         minSdk 24
+        //noinspection OldTargetApi
         targetSdk 33
         versionCode 1
         versionName "1.0"

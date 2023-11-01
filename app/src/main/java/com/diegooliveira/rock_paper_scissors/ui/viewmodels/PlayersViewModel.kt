@@ -26,7 +26,7 @@ class PlayersViewModel(
                 val response = repository.getMedievalName()
                 _opponentName.value = response.results.first()
             } catch (e: Exception) {
-                Log.i("ERRO API", e.toString())
+                Log.i("ERROR API", e.toString())
             }
         }
     }
