@@ -33,9 +33,9 @@ class RockPaperScissorsRepositoryImplTest {
             // Arrange
             val mockResponse = RockPaperScissorsResponse(
                 "paper",
-                "rock",
-                "cpu",
-                "paper covers rock"
+                "scissors",
+                "player",
+                "scissors cuts paper"
             )
             `when`(apiService.playGame("scissors")).thenReturn(mockResponse)
 
