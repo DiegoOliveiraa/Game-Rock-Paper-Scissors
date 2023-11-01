@@ -1,7 +1,13 @@
 package com.diegooliveira.rock_paper_scissors.domain.entity
 
-enum class RockPaperScissorsType(val isEnabled: Boolean) {
-    ROCK(true),
-    PAPER(true),
-    SCISSORS(true)
+enum class RockPaperScissorsType(val tag: String) {
+    ROCK(tag = "rock"),
+    PAPER(tag = "paper"),
+    SCISSORS(tag = "scissors");
+
+    companion object {
+        fun String.fromTag(): RockPaperScissorsType? {
+            return values().find { it.tag == this }
+        }
+    }
 }

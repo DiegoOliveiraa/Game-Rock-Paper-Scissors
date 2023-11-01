@@ -8,6 +8,9 @@
     <string name="activity_start_game_name_player">Olá, %s</string>
     <string name="activity_start_game_name_opponent">Seu oponente, %s escolheu:</string>
     <string name="activity_start_game_options">Escolha uma das opções abaixo:</string>
+    <string name="activity_start_game_message_victory">PARABÉNS VOCÊ GANHOU!</string>
+    <string name="activity_start_game_message_defeat">QUE PENA NAO FOI DESSA VEZ</string>
+    <string name="activity_start_game_message_draw">EMPATE, TENTE DE NOVO</string>
 
     <string name="activity_ranking_opponent_name">Ranking dos jogadores:</string>
     <string name="activity_ranking_points">Pontos</string>

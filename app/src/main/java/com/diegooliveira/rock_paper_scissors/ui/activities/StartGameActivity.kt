@@ -5,11 +5,16 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.lifecycle.Observer
 import com.diegooliveira.rock_paper_scissors.R
 import com.diegooliveira.rock_paper_scissors.R.string.activity_start_game_name_opponent
 import com.diegooliveira.rock_paper_scissors.R.string.activity_start_game_name_player
-import com.diegooliveira.rock_paper_scissors.ui.viewmodels.PlayersViewModel
+import com.diegooliveira.rock_paper_scissors.domain.entity.RockPaperScissorsType
+import com.diegooliveira.rock_paper_scissors.domain.entity.RockPaperScissorsType.*
+import com.diegooliveira.rock_paper_scissors.domain.entity.WinnerType
+import com.diegooliveira.rock_paper_scissors.domain.entity.WinnerType.Companion.fromWinnerTag
+import com.diegooliveira.rock_paper_scissors.domain.entity.WinnerType.DEFEAT
+import com.diegooliveira.rock_paper_scissors.domain.entity.WinnerType.DRAW
+import com.diegooliveira.rock_paper_scissors.domain.entity.WinnerType.VICTORY
 import com.diegooliveira.rock_paper_scissors.ui.viewmodels.RockPaperScissorsViewModel
 import com.google.android.material.textview.MaterialTextView
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -24,6 +29,8 @@ class StartGameActivity : AppCompatActivity() {
     private lateinit var imageHandRock: AppCompatImageView
     private lateinit var imageHandPaper: AppCompatImageView
     private lateinit var imageHandScissors: AppCompatImageView
+    private lateinit var ivBgMessage: AppCompatImageView
+    private lateinit var textMessage: MaterialTextView
 
     private var extraNamePlayer: String? = null
     private var extraNameOpponent: String? = null
@@ -49,12 +56,47 @@ class StartGameActivity : AppCompatActivity() {
     }
 
     private fun initObserversViewModel() {
-//        viewModel.opponentName.observe(this, Observer { opponent ->
-//            extraNamePlayer?.let { player ->
-//                namePlayer.text = getString(activity_start_game_name_player, player)
-//                descriptionOpponent.text = getString(activity_start_game_name_opponent, opponent)
-//            }
-//        })
+        viewModel.gameResult.observe(this) { result ->
+            when (result.winner.fromWinnerTag() ?: DRAW) {
+                VICTORY -> {
+                    ivBgMessage.setImageResource(R.drawable.bg_message_victory)
+                    textMessage.text = getString(R.string.activity_start_game_message_victory)
+                    textMessage.setTextAppearance(R.style.TextViewMessageStyle_Victory)
+
+                }
+
+                DEFEAT -> {
+                    ivBgMessage.setImageResource(R.drawable.bg_message_defeat)
+                    textMessage.text = getString(R.string.activity_start_game_message_defeat)
+                    textMessage.setTextAppearance(R.style.TextViewMessageStyle_Defeat)
+                }
+
+                DRAW -> {
+                    ivBgMessage.setImageResource(R.drawable.bg_message_draw)
+                    textMessage.text = getString(R.string.activity_start_game_message_draw)
+                    textMessage.setTextAppearance(R.style.TextViewMessageStyle_Draw)
+                }
+            }
+            val (bgResource, messageResource) = when (result.winner.fromWinnerTag() ?: DRAW) {
+                VICTORY -> R.drawable.bg_message_victory to R.string.activity_start_game_message_victory
+                DEFEAT -> R.drawable.bg_message_defeat to R.string.activity_start_game_message_defeat
+                DRAW -> R.drawable.bg_message_draw to R.string.activity_start_game_message_draw
+            }
+
+            ivBgMessage.setImageResource(bgResource)
+            textMessage.text = getString(messageResource)
+            ivBgMessage.visibility = View.VISIBLE
+            textMessage.visibility = View.VISIBLE
+        }
+        viewModel.setUpImageView.observe(this) {
+            imageOpponentsChoice.setImageResource(
+                when (it) {
+                    ROCK -> R.drawable.ic_rock_selected
+                    PAPER -> R.drawable.ic_paper_selected
+                    SCISSORS -> R.drawable.ic_scissors_selected
+                }
+            )
+        }
     }
 
     private fun setUpFindViewByIds() {
@@ -64,17 +106,39 @@ class StartGameActivity : AppCompatActivity() {
         imageHandRock = findViewById(R.id.image_hand_rock)
         imageHandPaper = findViewById(R.id.image_hand_paper)
         imageHandScissors = findViewById(R.id.image_hand_scissors)
+        ivBgMessage = findViewById(R.id.iv_bg_message)
+        textMessage = findViewById(R.id.text_message)
     }
 
 
     private fun setOnClickListeners() {
-        imageHandRock.setOnClickListener { makeIconsRockPaperScissors(it.tag.toString()) }
-        imageHandPaper.setOnClickListener { makeIconsRockPaperScissors(it.tag.toString()) }
-        imageHandScissors.setOnClickListener { makeIconsRockPaperScissors(it.tag.toString()) }
+        imageHandRock.setOnClickListener { makeIconsRockPaperScissors(ROCK) }
+        imageHandPaper.setOnClickListener { makeIconsRockPaperScissors(PAPER) }
+        imageHandScissors.setOnClickListener { makeIconsRockPaperScissors(SCISSORS) }
     }
 
-    private fun makeIconsRockPaperScissors(tag: String) {
-        Toast.makeText(this, tag, Toast.LENGTH_SHORT).show()
+    private fun makeIconsRockPaperScissors(selectedOption: RockPaperScissorsType) {
+        viewModel.playGame(selectedOption.tag)
+        when (selectedOption) {
+            ROCK -> {
+                imageHandRock.setImageResource(R.drawable.ic_rock_selected)
+                imageHandPaper.setImageResource(R.drawable.ic_paper_disabled)
+                imageHandScissors.setImageResource(R.drawable.ic_scissors_disabled)
+            }
+
+            PAPER -> {
+                imageHandRock.setImageResource(R.drawable.ic_rock_disabled)
+                imageHandPaper.setImageResource(R.drawable.ic_paper_selected)
+                imageHandScissors.setImageResource(R.drawable.ic_scissors_disabled)
+            }
+
+            SCISSORS -> {
+                imageHandRock.setImageResource(R.drawable.ic_rock_disabled)
+                imageHandPaper.setImageResource(R.drawable.ic_paper_disabled)
+                imageHandScissors.setImageResource(R.drawable.ic_scissors_selected)
+
+            }
+        }
     }
 
 }
