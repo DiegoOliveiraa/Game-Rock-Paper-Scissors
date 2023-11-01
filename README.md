@@ -12,7 +12,7 @@
 ## Tecnologias Utilizadas
 
 - **Kotlin:** Linguagem de programação moderna e concisa para o desenvolvimento Android.
-- **Hilt:** Biblioteca oficial do Google para injeção de dependência no Android.
+- **Koin:** Biblioteca para injeção de dependência no Android.
 - **Coroutines:** Facilita operações assíncronas e o gerenciamento de threads de forma eficiente.
 
 ## Como Contribuir
