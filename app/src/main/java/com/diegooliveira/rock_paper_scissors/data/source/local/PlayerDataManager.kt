@@ -1,6 +1,7 @@
 package com.diegooliveira.rock_paper_scissors.data.source.local
 
 import android.content.Context
+import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -20,7 +21,16 @@ class PlayerDataManager(context: Context) {
     fun getPlayerList(): MutableList<PlayerData> {
         val json = sharedPreferences.getString("players", null)
         return if (json != null) {
-            gson.fromJson(json, object : TypeToken<MutableList<PlayerData>>() {}.type)
+            val playerList: MutableList<PlayerData> =
+                gson.fromJson(json, object : TypeToken<MutableList<PlayerData>>() {}.type)
+
+            val sortedList = playerList.sortedByDescending { it.points }
+            val topPlayers = sortedList.take(8).toMutableList()
+
+            val topPlayersJson = gson.toJson(topPlayers)
+            sharedPreferences.edit().putString("players", topPlayersJson).apply()
+
+            return topPlayers
         } else {
             mutableListOf()
         }
@@ -32,14 +42,24 @@ class PlayerDataManager(context: Context) {
         editor.apply()
     }
 
-    fun updatePlayerPoints(playerName: String, newPoints: Int): Boolean {
+    fun getPlayerPoints(playerName: String): Int {
         for (player in getPlayerList()) {
             if (player.playerName == playerName) {
-                player.points = newPoints
-                savePlayerList(getPlayerList())
-                return true
+                return player.points
             }
         }
-        return false
+        return 0
+    }
+
+    fun updatePlayerPoints(playerName: String) {
+        val points = getPlayerPoints(playerName)
+        deletePlayer(playerName)
+        savePlayerData(PlayerData(playerName, points + 1))
+    }
+
+    private fun deletePlayer(playerName: String) {
+        val playerList = getPlayerList()
+        playerList.removeIf { it.playerName == playerName }
+        savePlayerList(playerList)
     }
 }

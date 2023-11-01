@@ -5,13 +5,14 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import com.diegooliveira.rock_paper_scissors.R
 import com.diegooliveira.rock_paper_scissors.R.string.activity_start_game_name_opponent
 import com.diegooliveira.rock_paper_scissors.R.string.activity_start_game_name_player
 import com.diegooliveira.rock_paper_scissors.domain.entity.RockPaperScissorsType
 import com.diegooliveira.rock_paper_scissors.domain.entity.RockPaperScissorsType.*
-import com.diegooliveira.rock_paper_scissors.domain.entity.WinnerType
-import com.diegooliveira.rock_paper_scissors.domain.entity.WinnerType.Companion.fromWinnerTag
+import com.diegooliveira.rock_paper_scissors.domain.entity.RockPaperScissorsType.Companion.fromRockPaperScissorsType
+import com.diegooliveira.rock_paper_scissors.domain.entity.WinnerType.Companion.fromWinnerType
 import com.diegooliveira.rock_paper_scissors.domain.entity.WinnerType.DEFEAT
 import com.diegooliveira.rock_paper_scissors.domain.entity.WinnerType.DRAW
 import com.diegooliveira.rock_paper_scissors.domain.entity.WinnerType.VICTORY
@@ -31,6 +32,10 @@ class StartGameActivity : AppCompatActivity() {
     private lateinit var imageHandScissors: AppCompatImageView
     private lateinit var ivBgMessage: AppCompatImageView
     private lateinit var textMessage: MaterialTextView
+    private lateinit var textRankNamePlayerName: AppCompatTextView
+    private lateinit var textRankNamePlayerPoints: AppCompatTextView
+    private lateinit var textRankNameOpponentName: AppCompatTextView
+    private lateinit var textRankNameOpponentPoints: AppCompatTextView
 
     private var extraNamePlayer: String? = null
     private var extraNameOpponent: String? = null
@@ -42,6 +47,7 @@ class StartGameActivity : AppCompatActivity() {
         setUpTextViewNames()
         initObserversViewModel()
         setOnClickListeners()
+        viewModel.initRoundsPlayed()
     }
 
     private fun setUpTextViewNames() {
@@ -49,53 +55,73 @@ class StartGameActivity : AppCompatActivity() {
         extraNameOpponent = intent.getStringExtra("OPPONENT_NAME")
         extraNamePlayer?.let { player ->
             namePlayer.text = getString(activity_start_game_name_player, player)
+            textRankNamePlayerName.text = player
         }
         extraNameOpponent?.let { opponent ->
             descriptionOpponent.text = getString(activity_start_game_name_opponent, opponent)
+            textRankNameOpponentName.text = opponent
         }
     }
 
     private fun initObserversViewModel() {
-        viewModel.gameResult.observe(this) { result ->
-            when (result.winner.fromWinnerTag() ?: DRAW) {
-                VICTORY -> {
-                    ivBgMessage.setImageResource(R.drawable.bg_message_victory)
-                    textMessage.text = getString(R.string.activity_start_game_message_victory)
-                    textMessage.setTextAppearance(R.style.TextViewMessageStyle_Victory)
-
-                }
-
-                DEFEAT -> {
-                    ivBgMessage.setImageResource(R.drawable.bg_message_defeat)
-                    textMessage.text = getString(R.string.activity_start_game_message_defeat)
-                    textMessage.setTextAppearance(R.style.TextViewMessageStyle_Defeat)
-                }
-
-                DRAW -> {
-                    ivBgMessage.setImageResource(R.drawable.bg_message_draw)
-                    textMessage.text = getString(R.string.activity_start_game_message_draw)
-                    textMessage.setTextAppearance(R.style.TextViewMessageStyle_Draw)
-                }
-            }
-            val (bgResource, messageResource) = when (result.winner.fromWinnerTag() ?: DRAW) {
-                VICTORY -> R.drawable.bg_message_victory to R.string.activity_start_game_message_victory
-                DEFEAT -> R.drawable.bg_message_defeat to R.string.activity_start_game_message_defeat
-                DRAW -> R.drawable.bg_message_draw to R.string.activity_start_game_message_draw
-            }
-
-            ivBgMessage.setImageResource(bgResource)
-            textMessage.text = getString(messageResource)
-            ivBgMessage.visibility = View.VISIBLE
-            textMessage.visibility = View.VISIBLE
-        }
-        viewModel.setUpImageView.observe(this) {
-            imageOpponentsChoice.setImageResource(
-                when (it) {
-                    ROCK -> R.drawable.ic_rock_selected
-                    PAPER -> R.drawable.ic_paper_selected
-                    SCISSORS -> R.drawable.ic_scissors_selected
-                }
+        viewModel.finalRoundsPlayed.observe(this) {
+            if (it == VICTORY) viewModel.savePlayerPoints(extraNamePlayer.orEmpty())
+            if (it == DEFEAT) viewModel.savePlayerPoints(extraNameOpponent.orEmpty())
+            Toast.makeText(
+                this,
+                getString(R.string.activity_start_game_message_final_rounds),
+                Toast.LENGTH_LONG
             )
+        }
+
+        viewModel.pointsPlayer.observe(this) { points ->
+            textRankNamePlayerPoints.text = points.toString()
+        }
+
+        viewModel.pointsOpponent.observe(this) { points ->
+            textRankNameOpponentPoints.text = points.toString()
+        }
+
+        viewModel.gameResult.observe(this) { result ->
+            result?.let { result ->
+                when (result.winner.fromWinnerType() ?: DRAW) {
+                    VICTORY -> {
+                        ivBgMessage.setImageResource(R.drawable.bg_message_victory)
+                        textMessage.text = getString(R.string.activity_start_game_message_victory)
+                        textMessage.setTextAppearance(R.style.TextViewMessageStyle_Victory)
+
+                    }
+
+                    DEFEAT -> {
+                        ivBgMessage.setImageResource(R.drawable.bg_message_defeat)
+                        textMessage.text = getString(R.string.activity_start_game_message_defeat)
+                        textMessage.setTextAppearance(R.style.TextViewMessageStyle_Defeat)
+                    }
+
+                    DRAW -> {
+                        ivBgMessage.setImageResource(R.drawable.bg_message_draw)
+                        textMessage.text = getString(R.string.activity_start_game_message_draw)
+                        textMessage.setTextAppearance(R.style.TextViewMessageStyle_Draw)
+                    }
+                }
+
+                imageOpponentsChoice.setImageResource(
+                    when (result.cpu.fromRockPaperScissorsType() ?: ROCK) {
+                        ROCK -> R.drawable.ic_rock_selected
+                        PAPER -> R.drawable.ic_paper_selected
+                        SCISSORS -> R.drawable.ic_scissors_selected
+                    }
+                )
+
+                ivBgMessage.visibility = View.VISIBLE
+                textMessage.visibility = View.VISIBLE
+            } ?: run {
+                Toast.makeText(
+                    this,
+                    getString(R.string.activity_start_game_message_error),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
     }
 
@@ -108,6 +134,10 @@ class StartGameActivity : AppCompatActivity() {
         imageHandScissors = findViewById(R.id.image_hand_scissors)
         ivBgMessage = findViewById(R.id.iv_bg_message)
         textMessage = findViewById(R.id.text_message)
+        textRankNamePlayerName = findViewById(R.id.text_rank_name_player_name)
+        textRankNamePlayerPoints = findViewById(R.id.text_rank_name_player_points)
+        textRankNameOpponentName = findViewById(R.id.text_rank_name_opponent_name)
+        textRankNameOpponentPoints = findViewById(R.id.text_rank_name_opponent_points)
     }
 
 
@@ -118,7 +148,12 @@ class StartGameActivity : AppCompatActivity() {
     }
 
     private fun makeIconsRockPaperScissors(selectedOption: RockPaperScissorsType) {
-        viewModel.playGame(selectedOption.tag)
+        viewModel.playGame(
+            guess = selectedOption.tag,
+            player = extraNamePlayer.orEmpty(),
+            opponent = extraNameOpponent.orEmpty()
+        )
+
         when (selectedOption) {
             ROCK -> {
                 imageHandRock.setImageResource(R.drawable.ic_rock_selected)

@@ -4,17 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/bg_logo"
+    android:padding="24dp"
     android:layout_height="match_parent">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_name_player"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:textSize="20sp"
+        android:ellipsize="end"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:maxLines="1"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Olá Diego" />
 
@@ -32,7 +35,7 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_opponents_choice"
-        android:layout_width="120dp"
+        android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -125,5 +128,11 @@
         app:layout_constraintStart_toEndOf="@+id/image_hand_paper"
         app:layout_constraintTop_toTopOf="@+id/image_hand_paper"
         app:srcCompat="@drawable/ic_scissors_selected" />
+
+    <include
+        layout="@layout/item_ranking_start_game_names"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_hand_paper" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

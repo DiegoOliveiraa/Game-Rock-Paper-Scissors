@@ -5,7 +5,7 @@ enum class WinnerType(val tag: String) {
     DEFEAT(tag = "cpu"),
     DRAW(tag = "draw");
     companion object {
-        fun String.fromWinnerTag(): WinnerType? {
+        fun String.fromWinnerType(): WinnerType? {
             return values().find { it.tag == this }
         }
     }

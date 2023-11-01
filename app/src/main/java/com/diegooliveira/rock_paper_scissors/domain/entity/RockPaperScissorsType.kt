@@ -6,7 +6,7 @@ enum class RockPaperScissorsType(val tag: String) {
     SCISSORS(tag = "scissors");
 
     companion object {
-        fun String.fromTag(): RockPaperScissorsType? {
+        fun String.fromRockPaperScissorsType(): RockPaperScissorsType? {
             return values().find { it.tag == this }
         }
     }

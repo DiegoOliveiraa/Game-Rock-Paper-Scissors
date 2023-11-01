@@ -8,6 +8,6 @@ import org.koin.dsl.module
 
 val viewModelModule = module {
     viewModel { PlayersViewModel(get(), get()) }
-    viewModel { RockPaperScissorsViewModel(get()) }
+    viewModel { RockPaperScissorsViewModel(get(), get()) }
     single { PlayerDataManager(get()) }
 }
