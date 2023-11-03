@@ -4,6 +4,8 @@
     <string name="activity_login_input_player">Nome do Jogador</string>
     <string name="activity_login_button_star">Iniciar Jogada</string>
     <string name="activity_login_button_ranking">Ver Ranking</string>
+    <string name="activity_login_dialog_no_internet_button">Voltar</string>
+    <string name="activity_login_dialog_no_internet_message">É necessário ter conexão com a internet para iniciar o jogo.</string>
 
     <string name="activity_start_game_name_player">Olá, %s</string>
     <string name="activity_start_game_name_opponent">Seu oponente, %s escolheu:</string>
@@ -12,10 +14,11 @@
     <string name="activity_start_game_message_defeat">QUE PENA NAO FOI DESSA VEZ</string>
     <string name="activity_start_game_message_draw">EMPATE, TENTE DE NOVO</string>
     <string name="activity_start_game_message_error">Ocorreu um erro ao executar a partida, tente novamente!</string>
+    <string name="activity_start_game_dialog_message">Vitória ou Derrota</string>
 
     <string name="activity_ranking_opponent_name">Ranking dos jogadores:</string>
     <string name="activity_ranking_points">Pontos</string>
-    <string name="activity_back_ranking">Voltar</string>
-    <string name="activity_start_game_message_final_rounds">Final da Partida</string>
+    <string name="activity_ranking_button_back">Voltar</string>
 
+    <string name="dialog_custom_button">Ok</string>
 </resources>

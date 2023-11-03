@@ -14,11 +14,9 @@ class PlayersViewModel(
     private val repository: PlayersRepository,
     private val playerDataManager: PlayerDataManager
 ) : ViewModel() {
+
     val opponentName: LiveData<String> get() = _opponentName
     private val _opponentName = MutableLiveData<String>()
-
-    val playerUpdated: LiveData<Boolean> get() = _playerUpdated
-    private val _playerUpdated = MutableLiveData<Boolean>()
 
     fun fetchOpponentName() {
         viewModelScope.launch {
@@ -32,13 +30,11 @@ class PlayersViewModel(
     }
 
     fun savePlayer(player: String) {
-        if (player.isNotEmpty()) {
-            playerDataManager.savePlayerData(PlayerData(player))
-            _playerUpdated.value = true
-        } else _playerUpdated.value = false
+        if (player.isNotEmpty()) playerDataManager.savePlayerData(PlayerData(player))
     }
 
     fun getPlayerList(): List<PlayerData> {
         return playerDataManager.getPlayerList().toList()
     }
 }
+

@@ -1,22 +1,25 @@
 package com.diegooliveira.rock_paper_scissors.ui.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import com.diegooliveira.rock_paper_scissors.R
 import com.diegooliveira.rock_paper_scissors.R.string.activity_start_game_name_opponent
 import com.diegooliveira.rock_paper_scissors.R.string.activity_start_game_name_player
 import com.diegooliveira.rock_paper_scissors.domain.entity.RockPaperScissorsType
-import com.diegooliveira.rock_paper_scissors.domain.entity.RockPaperScissorsType.*
 import com.diegooliveira.rock_paper_scissors.domain.entity.RockPaperScissorsType.Companion.fromRockPaperScissorsType
+import com.diegooliveira.rock_paper_scissors.domain.entity.RockPaperScissorsType.PAPER
+import com.diegooliveira.rock_paper_scissors.domain.entity.RockPaperScissorsType.ROCK
+import com.diegooliveira.rock_paper_scissors.domain.entity.RockPaperScissorsType.SCISSORS
 import com.diegooliveira.rock_paper_scissors.domain.entity.WinnerType.Companion.fromWinnerType
 import com.diegooliveira.rock_paper_scissors.domain.entity.WinnerType.DEFEAT
 import com.diegooliveira.rock_paper_scissors.domain.entity.WinnerType.DRAW
 import com.diegooliveira.rock_paper_scissors.domain.entity.WinnerType.VICTORY
 import com.diegooliveira.rock_paper_scissors.ui.viewmodels.RockPaperScissorsViewModel
+import com.diegooliveira.rock_paper_scissors.ui.util.DialogUtils.Companion.showCustomDialog
 import com.google.android.material.textview.MaterialTextView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -75,6 +78,8 @@ class StartGameActivity : AppCompatActivity() {
 
             ivBgMessage.visibility = View.GONE
             textMessage.visibility = View.GONE
+
+            showCustomDialog(R.string.activity_start_game_dialog_message)
         }
 
         viewModel.pointsPlayer.observe(this) { points ->
@@ -151,12 +156,7 @@ class StartGameActivity : AppCompatActivity() {
     }
 
     private fun makeIconsRockPaperScissors(selectedOption: RockPaperScissorsType) {
-        viewModel.playGame(
-            guess = selectedOption.tag,
-            player = extraNamePlayer.orEmpty(),
-            opponent = extraNameOpponent.orEmpty()
-        )
-
+        viewModel.playGame(guess = selectedOption.tag)
         when (selectedOption) {
             ROCK -> {
                 imageHandRock.setImageResource(R.drawable.ic_rock_selected)

@@ -7,8 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.diegooliveira.rock_paper_scissors.data.source.local.PlayerDataManager
 import com.diegooliveira.rock_paper_scissors.data.source.remote.entity.RockPaperScissorsResult
-import com.diegooliveira.rock_paper_scissors.domain.entity.RockPaperScissorsType
-import com.diegooliveira.rock_paper_scissors.domain.entity.RockPaperScissorsType.Companion.fromRockPaperScissorsType
 import com.diegooliveira.rock_paper_scissors.domain.entity.WinnerType
 import com.diegooliveira.rock_paper_scissors.domain.entity.WinnerType.Companion.fromWinnerType
 import com.diegooliveira.rock_paper_scissors.domain.entity.WinnerType.DEFEAT
@@ -34,7 +32,7 @@ class RockPaperScissorsViewModel(
     val pointsOpponent: LiveData<Int> get() = _pointsOpponent
     private val _pointsOpponent = MutableLiveData<Int>()
 
-    fun playGame(guess: String, player: String, opponent: String) {
+    fun playGame(guess: String) {
         viewModelScope.launch {
             try {
                 val response = repository.playGame(guess)
